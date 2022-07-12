@@ -68,3 +68,22 @@
   text-align: center;
   background-color: var(--color-main);
 }
+.division-title{
+  position: absolute;
+  top: 50px;
+  width: 100%;
+  padding: 40px;
+  border-bottom: 1px solid var(--color-black-opacity-50);
+}
+.division-title h1,
+.division-title p{
+  margin: 0;
+}
+.division-title h1{
+  font-size: 35px;
+  font-weight: 400;
+}
+.division-title p{
+  margin-top: 20px;
+  font-size: 20px;
+}
