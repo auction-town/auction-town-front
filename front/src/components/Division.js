@@ -12,30 +12,55 @@ function SelectList(props) {
     </li>)
   }
 
-  return <ol>
-    {list}
-  </ol>
+  return <div>
+    <ul>
+      {list}
+    </ul>
+  </div>
 }
 
 function MainCalculator(props) {
   let mainSection = null;
+  let value = null;
   for(let i = 0; i < props.moyeoList.length; i++){
     let data = props.moyeoList[i];
     if(props.calculator === '/moyeoList/'+data.key){
-      mainSection = props.moyeoList[i].key;
+      for(let j = 0; j < data.value.length; j++){
+        value = <>{value}
+          <option>
+            {data.value[j]}
+          </option>
+        </>
+      }
+      mainSection = <div>
+        <h2>
+          <p>{data.title} {data.peoples}</p>
+        </h2>
+        <div>
+          <p>입력</p>
+          <p>결제 한 사람</p>
+          <select name='people'>
+            {value}
+          </select>
+          <form>
+            <p>사용처</p>
+            <input></input>
+            <p>결제금액</p>
+            <input></input>
+            <input type='submit'></input>
+          </form>
+        </div>
+      </div>
     }
   }
-  return <h2>
-    {mainSection}
-  </h2>
+  return <div>{mainSection}</div>
 }
 
-
 export default function Division() {
-  const [moyeoList,setMoyeoList] = useState([
-    {key : 1, title : "준수님과 약속", peoples : "(2)"},
-    {key : 2, title : "다솜님과 약속", peoples : "(2)"},
-    {key : 3, title : "프로젝트 약속", peoples : "(5)"}
+  const [moyeoList,setMoyeoList] = useState([ //setMoyeoList는 약속추가하기, 새로운 약속잡기를 통해 사용될 예정
+    {key : 1, title : "회운님과 약속", peoples : "(2)", value : ["장준수","정회운"]},
+    {key : 2, title : "다솜님과 약속", peoples : "(2)", value : ["장준수","이다솜"]},
+    {key : 3, title : "프로젝트 약속", peoples : "(5)", value : ["장준수","정회운","이다솜","최강현","황수경"]}
   ]);
 
   const [calculator,setCalculator] = useState('/moyeoList/'+moyeoList[0].key);
@@ -46,14 +71,10 @@ export default function Division() {
       <p>오늘 친구와 사용한 금액 계산하기</p>
     </div>
     <section className='division-section'>
-      <div>
         <SelectList moyeoList={moyeoList} onChangeMode={(id) => {
           setCalculator(id);
         }}/>
-      </div>
-      <div>
         <MainCalculator calculator={calculator} moyeoList={moyeoList}/>
-      </div>
     </section>
   </article>
 }
