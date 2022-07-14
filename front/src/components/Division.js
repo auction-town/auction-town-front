@@ -4,7 +4,7 @@ function SelectList(props) {
   const list = [];
   for(let i = 0; i < props.moyeoList.length; i++){
     let data = props.moyeoList[i];
-    list.push(<li key={data.key}>
+    list.push(<li key={data.key} className='moyeo-list'>
       <a id={'/moyeoList/'+data.key} href={'/entryList/'+data.key} onClick={event =>{
         event.preventDefault();
         props.onChangeMode(event.target.id);
@@ -12,7 +12,7 @@ function SelectList(props) {
     </li>)
   }
 
-  return <div>
+  return <div className='moyeo-section'>
     <ul>
       {list}
     </ul>
@@ -22,6 +22,7 @@ function SelectList(props) {
 function MainCalculator(props) {
   let mainSection = null;
   let value = null;
+  let answer = null;
   for(let i = 0; i < props.moyeoList.length; i++){
     let data = props.moyeoList[i];
     if(props.calculator === '/moyeoList/'+data.key){
@@ -30,30 +31,47 @@ function MainCalculator(props) {
           <option>
             {data.value[j]}
           </option>
+        </>;
+        answer = <>{answer}
+        <p className='output-answer-list'>{data.value[j]}님은 000원을 계산하셨습니다.</p>
         </>
       }
-      mainSection = <div>
-        <h2>
+      answer = <>{answer}
+      <h2 className='output-solution'>???님이 ???님에게 000원을 송금해야 합니다.</h2>
+      </>
+      mainSection = <>
+        <h2 className='main-section-title'>
           <p>{data.title} {data.peoples}</p>
         </h2>
-        <div>
-          <p>입력</p>
-          <p>결제 한 사람</p>
-          <select name='people'>
+        <div className='main-section-input'>
+          <p className='input-title'>입력</p>
+          <p className='pay-person'>결제 한 사람</p>
+          <select className='pay-persons' name='people'>
             {value}
           </select>
-          <form>
+          <form className='input-form'>
             <p>사용처</p>
-            <input></input>
+            <input className='input-place'></input>
             <p>결제금액</p>
-            <input></input>
-            <input type='submit'></input>
+            <input className='input-payment' type='text' name='payment'></input>
+            <input className='input-submit' type='submit' value='계산 추가하기' onClick={event => {
+              event.preventDefault();
+            }}></input>
           </form>
         </div>
-      </div>
+        <div className='main-section-output'>
+          <p className='output-title'>계산</p>
+          <p className='pay-list'>결제 목록</p>
+          <div className='pay-list-box'></div>
+          <p className='output-answer'>계산 결과</p>
+          {answer}
+          <button className='output-share'>공유</button>
+          <button className='output-clear'>초기화</button>
+        </div>
+      </>
     }
   }
-  return <div>{mainSection}</div>
+  return <div className='main-calculator'>{mainSection}</div>
 }
 
 export default function Division() {
