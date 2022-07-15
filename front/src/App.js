@@ -1,10 +1,12 @@
 import './App.css';
 import React,{useState} from 'react';
+import axios from 'axios';
 import Header from './components/Header';
 import Nav from './components/Nav';
 import Map from './components/Map';
 import Footer from './components/Footer';
 import Division from './components/Division';
+import Login from './components/Login'
 
 function App() {
 
@@ -14,12 +16,17 @@ function App() {
 
   if(mode === "map-btn"){
     article = <Map/>
-  }else if(mode ==="calculator"){
+  }else if(mode === "calculator"){
     article = <Division/>
+  }else if(mode === "login"){
+    article = <Login/>
   }
+
   return (
     <div className="App">
-      <Header />
+      <Header onChange={(className)=>{
+        setMode(className);  
+      }}/>
       <Nav onChange={(className)=>{
         setMode(className);
       }}/>
