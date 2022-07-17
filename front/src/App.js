@@ -7,25 +7,35 @@ import Map from './components/Map';
 import Footer from './components/Footer';
 import Division from './components/Division';
 import Login from './components/Login'
+import Search from './components/Search'
 
 function App() {
 
   let article = null;
   const [mode, setMode] = useState("map-btn");
-  console.log(mode);
 
   if(mode === "map-btn"){
     article = <Map/>
   }else if(mode === "calculator"){
     article = <Division/>
   }else if(mode === "login"){
-    article = <Login/>
+    article = <Login onChange={(id) =>{
+      setMode(id);
+    }}/>
+  }else if(mode === "search_id" || mode === "search_go_id"){
+    article = <><Login/><Search onChange={(id)=>{
+      setMode(id);
+    }}/></>
+  }else if(mode === "search_pw" || mode === "search_go_pw"){
+    article = <><Login/><Search onChange={(id)=>{
+      setMode(id);
+    }}/></>
   }
 
   return (
     <div className="App">
       <Header onChange={(className)=>{
-        setMode(className);  
+        setMode(className);
       }}/>
       <Nav onChange={(className)=>{
         setMode(className);
