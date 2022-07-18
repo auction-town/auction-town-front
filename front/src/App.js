@@ -23,15 +23,16 @@ function App() {
       setMode(id);
     }}/>
   }else if(mode === "search_id" || mode === "search_go_id"){
-    article = <><Login/><Search onChange={(id)=>{
+    article = <><Login/><Search searchId={mode} onChange={(id)=>{
       setMode(id);
     }}/></>
   }else if(mode === "search_pw" || mode === "search_go_pw"){
-    article = <><Login/><Search onChange={(id)=>{
+    article = <><Login/><Search searchId={mode} onChange={(id)=>{
       setMode(id);
     }}/></>
   }
 
+  console.log(mode);
   return (
     <div className="App">
       <Header onChange={(className)=>{
