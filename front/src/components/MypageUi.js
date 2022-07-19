@@ -1,22 +1,16 @@
-
-
-
 export default function MypageUi() {
 
     return <mypageUi className="mypageUi">
-        <mypageUiForm>
-            <mypageUiUser>
+        <div className="mypageUiDiv">
+            <div className="mypageUiDivP">
                 <p className="mypageUiP">홍길동님 안녕하세요.</p>
-            </mypageUiUser>
-            <hrDiv></hrDiv>
-            <mypageUiOp>
-                <a className="mypageUiA">회원 수정</a>
-                <a className="mypageUiA">회원 탈퇴</a>
-                <a className="mypageUiA">History</a>
-            </mypageUiOp>
-        </mypageUiForm>
+            </div>
+            <div className="mypageUiHr"></div>
+            <div className="mypageUiDivA">
+                <a href="/" className="mypageUiA">회원 수정</a>
+                <a href="/" className="mypageUiA">회원 탈퇴</a>
+                <a href="/" className="mypageUiA">History</a>
+            </div>
+        </div>
     </mypageUi>
   }
-
-  const mypageUiForm = styled.div`
-  `;
