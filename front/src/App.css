@@ -200,6 +200,9 @@
   font-weight: 600;
 }
 .output-share{
+  position: absolute;
+  top: 100px;
+  left: 500px;
   margin: 0 20px 0 290px;
   width: 130px;
   height: 45px;
@@ -211,6 +214,9 @@
   font-weight: 0;
 }
 .output-clear{
+  position: absolute;
+  top: 100px;
+  left: 600px;
   margin: 0 10px 0 0;
   width: 150px;
   height: 45px;
